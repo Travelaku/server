@@ -36,7 +36,7 @@ module.exports = {
           const access_token = sign(payload)
           res
             .status(200)
-            .json({ token: access_token, email: user.email })
+            .json({ token: access_token, username: user.username })
         }
       })
       .catch(err => {

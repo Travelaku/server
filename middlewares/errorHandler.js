@@ -4,7 +4,11 @@ module.exports = (err, req, res, next) => {
     msg: "Internal Server Error"
   }
 
-  // if else errornya
+  if (err.name === 'SequelizeValidationError') {
+    status = 400
+    errObj.msg = "Validation Error"
+    errObj.errors = err.errors.map(error => error.message)
+  }
 
   res
     .status(status)
