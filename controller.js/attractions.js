@@ -9,8 +9,8 @@ class attractionsController{
       method : 'get',
       url : `https://tripadvisor1.p.rapidapi.com/attractions/list-by-latlng?longitude=${longitude}&latitude=${latitude}`,
       headers : {
-        'x-rapidapi-host' :  'tripadvisor1.p.rapidapi.com',
-        'x-rapidapi-key' : '3f5ba6176emsh4b621e659e7f996p12fc18jsn30e17cb5d654'
+        'x-rapidapi-host' :  process.env.RAPID_HOST,
+        'x-rapidapi-key' : process.env.RAPID_KEY
       }
     })
     .then(result=>{
