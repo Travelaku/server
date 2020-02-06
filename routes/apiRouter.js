@@ -1,6 +1,6 @@
 const router = require('express').Router()
-const attractionsController = require('../controller.js/attractions')
-const hotelsController = require('../controller.js/hotels')
+const attractionsController = require('../controllers/attractions')
+const hotelsController = require('../controllers/hotels')
 const { publicHoliday, geocodeController, airQualityController } = require('../controllers')
 
 router.get('/attractions', attractionsController.getAttractions)
