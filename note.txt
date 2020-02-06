@@ -1,0 +1,2 @@
+Air Quality API
+  https://www.airvisual.com/dashboard/api
