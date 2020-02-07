@@ -1,14 +1,13 @@
 const router = require('express').Router()
+<<<<<<< HEAD
+const { publicHoliday, contentController } = require('../controllers')
+=======
 const attractionsController = require('../controllers/attractions')
 const hotelsController = require('../controllers/hotels')
 const { publicHoliday, geocodeController, airQualityController } = require('../controllers')
+>>>>>>> development
 
-router.get('/attractions', attractionsController.getAttractions)
-router.get('/hotels', hotelsController.getHotels)
-router.get('/getcoordinate', geocodeController.getCoordinate)
 router.get('/publicHoliday', publicHoliday.findPublicHoliday)
-router.get('/weatherbit', airQualityController.weatherbit)
-router.get('/airvisual', airQualityController.airvisual)
-
+router.post('/getdata', contentController.getdata)
 
 module.exports = router

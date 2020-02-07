@@ -1,5 +1,4 @@
 # TRAVELAKU #
-<br>
 ## BASE URL : localhost:3000 ##
 
 ### Route: /api/getcoordinate ###
