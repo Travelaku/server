@@ -98,6 +98,8 @@ module.exports = {
               .json({ weatherbit: value1, airvisual: value2, hotels: value3, attractions: value4 })
           })
       })
-      .catch(next)
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
