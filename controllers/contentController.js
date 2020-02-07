@@ -76,22 +76,22 @@ module.exports = {
               if (el.name) {
                 let obj = {}
                 obj.name = el.name
+                obj.image_url = el.photo.images.small.url
                 obj.rating = el.rating
                 obj.price = el.price
                 obj.hotel_class = el.hotel_class
                 return obj
               }
             })
-            const value4 = values[3].data.data.map(el => {
-              if (el.name) {
-                let obj = {}
-                obj.name = el.name
-                obj.image_url = el.photo.images.medium.url
-                obj.address = el.address || el.address_obj.city
-                obj.rating = el.rating || 'none'
-                obj['category/type'] = `${el.category.name}, ${el.subcategory[0].name}`
-                return obj
-              }
+            const attrs = values[3].data.data.filter(attr => attr.photo)
+            const value4 = attrs.map(el => {
+              let obj = {}
+              obj.name = el.name
+              obj.image_url = el.photo.images.medium.url
+              obj.address = el.address || el.address_obj.city
+              obj.rating = el.rating || 'none'
+              obj['category/type'] = `${el.category.name}, ${el.subcategory[0].name}`
+              return obj
             })
             res
               .status(200)
@@ -99,7 +99,7 @@ module.exports = {
           })
       })
       .catch(err => {
-        console.log(err)
+        next(err)
       })
   }
 }

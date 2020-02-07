@@ -30,7 +30,7 @@ module.exports = {
     const { email, password } = req.body
     const err = {
       errorMessage: 'bad request',
-      msg : 'Invalid username / password'
+      msg: 'Invalid username / password'
     }
     User.findOne({ where: { email } })
       .then(user => {
