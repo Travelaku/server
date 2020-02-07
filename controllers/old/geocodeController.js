@@ -3,6 +3,7 @@ const axios = require('axios')
 module.exports = {
   getCoordinate(req, res, next) {
     const { address } = req.body
+    console.log(address)
     axios({
       method: 'get',
       url: `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.GOOGLEAPIKEY}&address=${address}`
