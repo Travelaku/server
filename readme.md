@@ -67,3 +67,24 @@ response:
     }
 }
 ```
+
+---
+<br>
+
+### Route: /api/publicHoliday ###
+#### body: date, localName, name ####
+
+response:
+```
+
+{
+    "data": [
+        {
+            "date": "2020-01-01",
+            "localName": "Tahun Baru Masehi",
+            "name": "New Year's Day"
+        }
+    ]
+}
+```
+
