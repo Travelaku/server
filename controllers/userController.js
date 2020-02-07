@@ -7,6 +7,7 @@ const client = new OAuth2Client(process.env.CLIENT_ID)
 module.exports = {
   register(req, res, next) {
     const { username, email, password } = req.body
+    let ERRORS = {};
     User.create({
       username,
       email,
@@ -17,11 +18,20 @@ module.exports = {
           .status(201)
           .json(user)
       })
-      .catch(next)
+      .catch(err => {
+        next({
+          errorMessage: 'bad request',
+          msg: err.errors[0].message
+        })
+      })
   },
 
   login(req, res, next) {
     const { email, password } = req.body
+    const err = {
+      errorMessage: 'bad request',
+      msg : 'Invalid username / password'
+    }
     User.findOne({ where: { email } })
       .then(user => {
         const valid = compare(password, user.password)
@@ -39,9 +49,7 @@ module.exports = {
             .json({ token: access_token, username: user.username })
         }
       })
-      .catch(err => {
-        next({ msg: "Invalid Username / Password" })
-      })
+      .catch(next(err))
   },
 
   googleSignIn(req, res, next) {
