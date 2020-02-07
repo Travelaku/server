@@ -7,7 +7,6 @@ const client = new OAuth2Client(process.env.CLIENT_ID)
 module.exports = {
   register(req, res, next) {
     const { username, email, password } = req.body
-    let ERRORS = {};
     User.create({
       username,
       email,
@@ -54,20 +53,25 @@ module.exports = {
 
   googleSignIn(req, res, next) {
     let email
-
+    let username
+    console.log('MASUK')
     client.verifyIdToken({
       idToken: req.body.google_token,
       audience: process.env.CLIENT_ID
     })
       .then(ticket => {
+        console.log('MASUK 1')
         email = ticket.getPayload().email
+        username = ticket.getPayload().name
         return User.findOne({ where: { email } })
       })
       .then(userData => {
         if (!userData) {
+          console.log('masuk')
           return User.create({
+            username,
             email,
-            password: process.env.SECRET_PASSWORD
+            password: 'tesdoang'
           })
         }
         else {
