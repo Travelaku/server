@@ -46,6 +46,7 @@ module.exports = {
 
   googleSignIn(req, res, next) {
     let email
+    let username
 
     client.verifyIdToken({
       idToken: req.body.google_token,
@@ -53,11 +54,13 @@ module.exports = {
     })
       .then(ticket => {
         email = ticket.getPayload().email
+        username = ticket.getPayload().name
         return User.findOne({ where: { email } })
       })
       .then(userData => {
         if (!userData) {
           return User.create({
+            username,
             email,
             password: process.env.SECRET_PASSWORD
           })
